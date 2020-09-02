@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy
 
-def piroca():
+def plot():
     data = pd.read_csv('./signal.csv')
     sensor_data = data[['# data']]
 
@@ -38,4 +38,4 @@ def bandPassFilter(signal):
 
     return(y)
 
-piroca()
+plot()
