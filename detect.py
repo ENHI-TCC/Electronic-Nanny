@@ -10,18 +10,12 @@ import matplotlib.ticker as mticker
 import time
 import alsaaudio
 
-
-
 	 
 limiar = 0.01	#limiar de energia que decide quando o microfone vai gravar
 periodo = 70	
 fs = 16000	#frequência de amostragem
 grava = 0
-jarbas = False
-flag_comando = False
-cont_gravacao = 0	
 
-mqtt = 'sudo mosquitto_pub -h 192.168.100.33:1883 -t esp8266/lampadaLab -m desliga'
 
 while(True):
 	inp = alsaaudio.PCM(alsaaudio.PCM_CAPTURE, alsaaudio.PCM_NONBLOCK, channels=1, rate=44100, format=alsaaudio.PCM_FORMAT_FLOAT_LE, periodsize=70, device='default')
