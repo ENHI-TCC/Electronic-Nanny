@@ -9,6 +9,7 @@ import math
 import matplotlib.ticker as mticker
 import time
 import alsaaudio
+import requests
 
 	 
 limiar = 0.01	#limiar de energia que decide quando o microfone vai gravar
@@ -35,6 +36,8 @@ while(True):
 			if(energy > limiar and grava == 0):
 				grava = 1
 				print("Atingi a energia")
+				
+				response = requests.post('http://192.168.100.33:8080/ServerRequest/NewCry')
 				
 			if(grava == 1):	#grava durante 1,1 segundos
 				
