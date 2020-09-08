@@ -11,7 +11,7 @@ import time
 import alsaaudio
 import requests
 
-	 
+mqtt = 'sudo mosquitto_pub -h 192.168.100.33 -t bracelet/cry -m liga'	 
 limiar = 0.01	#limiar de energia que decide quando o microfone vai gravar
 periodo = 70	
 fs = 16000	#frequência de amostragem
@@ -32,13 +32,13 @@ while(True):
 			v = np.frombuffer(data, dtype=np.float32)
 			# calcula a energia do quadro e, se for maior que o limiar, ativa a flag para gravar
 			energy = np.dot(v,v) / float(len(v))
+			print(energy);
 			# print("valor da energia", energy)
 			if(energy > limiar and grava == 0):
 				grava = 1
-				print("Atingi a energia")
-				
+				# print("Atingi a energia")							
 				response = requests.post('http://192.168.100.33:8080/ServerRequest/NewCry')
-				
+				os.system(mqtt)				
 			if(grava == 1):	#grava durante 1,1 segundos
 				
 				total_size = total_size - length		
